@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html class="wf-museosans-i3-active wf-museosans-i5-active wf-museosans-i7-active wf-museosans-n3-active wf-museosans-n5-active wf-museosans-n7-active wf-active"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<title>DigitalOcean Control Panel</title>
+<link href="DOAPI_files/normalize-43319b03fa658957e02906e6fc710a7f.css" media="screen" rel="stylesheet" type="text/css">
+<link href="DOAPI_files/bootstrap-5ea5a2e30467b4c22db7cbaf6c0ee1a6.css" media="screen" rel="stylesheet" type="text/css">
+<link href="DOAPI_files/control_panel-a2f60fb118665bbbc4070d4a365fe98b.css" media="screen" rel="stylesheet" type="text/css">
+<link href="DOAPI_files/select2-6b9f2b7ccbe6a6b2ced0d22b0ec77f5d.css" media="screen" rel="stylesheet" type="text/css">
+<script src="DOAPI_files/mixpanel-2.js" async="" type="text/javascript"></script><script async="" type="text/javascript" src="DOAPI_files/vbr8xjq.js"></script><script src="DOAPI_files/control_panel-cfeaf9012112f9a0a6c03d39d9e0ff69.js" type="text/javascript"></script><style type="text/css"></style>
+<script src="DOAPI_files/select2-756023f5e24367062d50d2a458922021.js" type="text/javascript"></script>
+ 
+<script>
+  //<![CDATA[
+      (function() {
+        var config = {
+          kitId: 'vbr8xjq',
+          scriptTimeout: 3000
+        };
+        var h=document.getElementsByTagName("html")[0];h.className+=" wf-loading";var t=setTimeout(function(){h.className=h.className.replace(/(\s|^)wf-loading(\s|$)/g," ");h.className+=" wf-inactive"},config.scriptTimeout);var tk=document.createElement("script"),d=false;tk.src='//use.typekit.net/'+config.kitId+'.js';tk.type="text/javascript";tk.async="true";tk.onload=tk.onreadystatechange=function(){var a=this.readyState;if(d||a&&a!="complete"&&a!="loaded")return;d=true;clearTimeout(t);try{Typekit.load(config)}catch(b){}};var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(tk,s)
+      })();
+  //]]>
+</script><style type="text/css">.tk-museo-sans{font-family:"museo-sans",sans-serif;}</style><link href="DOAPI_files/d.css" rel="stylesheet">
+</head>
+<body class="api_access control_panel settings">
+<div id="container">
+<div id="content">
+<div class="contents" style="width:900px;">
+ 
+ 
+ 
+ 
+<div id="api" style="width:900px;">
+<div class="api-section">
+<h2>/services/app</h2>
+<ul class="stack">
+<li class="method">
+<div class="content collapsed" data-target="#droplets-list" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/users</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="droplets-list">
+<div class="content">
+<h3>Show all users</h3>
+<p>This method returns all users that are currently have an account.</p>
+<h4>Request URL:</h4>
+<pre>http://ticaret.herokuapp.com/services/app/users</pre>
+<h4>Sample Response</h4>
+<pre> [{
+    "events": null,
+    "userEmail": null,
+    "userPassword": null,
+    "userId": 10,
+    "userFname": "Ali10",
+    "userDate": null,
+    "userLname": null,
+    "userLocation": null,
+    "invitedUsers1": null,
+    "invitedUsers2": null
+}, {
+    "events": null,
+    "userEmail": "mail8",
+    "userPassword": "password",
+    "userId": 8,
+    "userFname": "Ali8",
+    "userDate": null,
+    "userLname": "Ben Messaoud",
+    "userLocation": null,
+    "invitedUsers1": null,
+    "invitedUsers2": null
+}]
+</pre>
+</div>
+</div>
+</li>
+<li class="method">
+<div class="content collapsed" data-target="#droplets-new" data-toggle="collapse">
+<div class="verb get">POST</div>
+<div class="path">/users/register</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="droplets-new">
+<div class="content">
+<h3>Register</h3>
+<p>This method allows a new user to register. See the required 
+parameters section below for an explanation of the variables that are 
+needed to register a new user.</p>
+<h4>Request URL:</h4>
+<pre>http://ticaret.herokuapp.com/services/app/users/register</pre>
+<h4>Parameters</h4>
+<ul>
+<li><strong>first name</strong> Required, String, this is the  first name of the user</li>
+<li><strong>last name</strong> Required, String, this is the  last name of the user</li>
+<li><strong>email</strong> Required, String, this is the main id helping user to be identified</li>
+<li><strong>password</strong> Required, String</li>
+<li><strong>location</strong> Optional, String</li>
+</ul>
+
+<pre>
+{
+    "userEmail": "mail",
+    "userPassword": "pass",
+    "userFname": "Ali10",
+    "userLname": "ok",
+    "userLocation": "tunis"
+}
+
+//response
+
+{
+  "operation": "register",
+  "message": "failed",
+  "flagId": null,
+  "id": 0,
+  "flagText": "form-error",
+  "text": "First name is not valid.<br>Last name is not valid.<br>Email is not valid<br>Password must be between 8 & 20 characters.<br>"
+}
+</pre>
+<h4>Succes case</h4>
+<pre>{
+    "userEmail": "gmail@gmail.com",
+    "userPassword": "password",
+    "userFname": "ali",
+    "userLname": "benmessaoud",
+    "userLocation": "tunis"
+}
+
+//gives 
+
+{
+  "operation": "register",
+  "message": "ok",
+  "flagId": "user-id",
+  "id": 13,
+  "flagText": null,
+  "text": null
+}
+</pre>
+</div>
+</div>
+</li>
+<li class="method">
+<div class="content collapsed" data-target="#droplets-show" data-toggle="collapse">
+<div class="verb get">POST</div>
+<div class="path">/users/login</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="droplets-show">
+<div class="content">
+<h3>Login</h3>
+<p>This method helps a user to login using his email & password.</p>
+<h4>Request URL:</h4>
+<pre>http://ticaret.herokuapp.com/services/app/users/login</pre>
+<h4>Parameters</h4>
+<ul>
+<li><strong>email</strong> Required, String, this is the id of user</li>
+<li><strong>password</strong> Required, String, this is the password</li>
+</ul>
+<h4>Sample Response</h4>
+<pre> 
+{
+    "userEmail": "gmail@gmail.com",
+    "userPassword": "password"
+}
+
+//gives
+
+{
+  "operation": "login",
+  "message": "ok",
+  "flagId": null,
+  "id": 13,
+  "flagText": null,
+  "text": null
+}
+
+//or 
+
+{
+  "operation": "login",
+  "message": "failed",
+  "flagId": null,
+  "id": 0,
+  "flagText": null,
+  "text": null
+}
+
+</pre>
+</div>
+</div>
+</li>
+<li class="method">
+<div class="content collapsed" data-target="#droplets-reboot" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/users/[user_id]</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="droplets-reboot">
+<div class="content">
+<h3>Get user</h3>
+<p>This method allows you to get user informations.</p>
+<h4>Request URL:</h4>
+<pre>http://ticaret.herokuapp.com/services/app/users/[user_id]</pre>
+<h4>Parameters</h4>
+<ul>
+<li><strong>user_id</strong> Required, Integer, this is the id of your user that you want to get information about.</li>
+</ul>
+<h4>Sample Response</h4>
+<pre>{
+    "userEmail": "mail2alibm@gmail.com",
+    "userPassword": "********",
+    "userId": 11,
+    "userFname": "alibm",
+    "userDate": 1386429799643,
+    "userLname": "ben messaoud",
+    "userLocation": null
+}</pre>
+</div>
+</div>
+</li>
+
+<li class="method">
+<div class="content collapsed" data-target="#droplets-powercycle" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/users/[user_id]/events</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="droplets-powercycle">
+<div class="content">
+<h3>Get user events</h3>
+<p>This method allows you to get user events.</p>
+<h4>Request URL:</h4>
+<pre>http://ticaret.herokuapp.com/services/app/users/[user_id]/events</pre>
+<h4>Parameters</h4>
+<ul>
+<li><strong>user_id</strong> Required, Integer, this is the id of the user that you want to get its events</li>
+</ul>
+<h4>Sample Response</h4>
+<pre>[{
+    "user": null,
+    "eventDate": 1386433006411,
+    "invitedUsers": null,
+    "eventName": "2sdfsf",
+    "eventLocation": null,
+    "eventStartDate": null,
+    "eventEndDate": null,
+    "eventDescription": null,
+    "eventImage": null,
+    "eventId": 1
+}, {
+    "user": null,
+    "eventDate": 1386452906805,
+    "invitedUsers": null,
+    "eventName": "esqfsdv",
+    "eventLocation": "gvdfv",
+    "eventStartDate": null,
+    "eventEndDate": null,
+    "eventDescription": null,
+    "eventImage": null,
+    "eventId": 2
+} ]</pre>
+</div>
+</div>
+</li>
+
+
+ 
+
+
+<li class="method">
+<div class="content collapsed" data-target="#droplets-shutdown" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/users/[user_id]/invitations</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="droplets-shutdown">
+<div class="content">
+<h3>User invitations</h3>
+<p>This method allows you to get user invitations.</p>
+<h4>Request URL:</h4>
+<pre>http://ticaret.herokuapp.com/services/app/users/[user_id]/invitations</pre>
+<h4>Parameters</h4>
+<ul>
+<li><strong>user_id</strong> Required, Integer, this is the id of your user that you want to get his invitations.</li>
+</ul>
+<h4>Sample Response</h4>
+<pre>[{
+    "user": null,
+    "eventDate": 1386469521657,
+    "invitedUsers": null,
+    "eventName": "event test 1",
+    "eventLocation": "tunis",
+    "eventStartDate": "13/12/2013",
+    "eventEndDate": "12/13/2013",
+    "eventDescription": "from rest firefox",
+    "eventImage": "a",
+    "eventId": 3
+}]</pre>
+</div>
+</div>
+</li>
+
+
+<li class="method">
+<div class="content collapsed" data-target="#droplets-poweroff" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/events</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="droplets-poweroff">
+<div class="content">
+<h3>Get all ticaret events</h3>
+<p>This method allows you to get all ticaret events.</p>
+<h4>Request URL:</h4>
+<pre>http://ticaret.herokuapp.com/services/app/events</pre>
+<h4>Sample Response</h4>
+<pre>[{
+    "user": {
+        "events": null,
+        "userEmail": "mail2alibm@gmail.com",
+        "userPassword": "mailmail",
+        "userId": 11,
+        "userFname": "alibm",
+        "userDate": 1386429799643,
+        "userLname": "ben messaoud",
+        "userLocation": null,
+        "invitedUsers1": null,
+        "invitedUsers2": null
+    },
+    "eventDate": 1386433006411,
+    "invitedUsers": null,
+    "eventName": "2sdfsf",
+    "eventLocation": null,
+    "eventStartDate": null,
+    "eventEndDate": null,
+    "eventDescription": null,
+    "eventImage": null,
+    "eventId": 1
+}]</pre>
+</div>
+</div>
+</li>
+
+<li class="method">
+<div class="content collapsed" data-target="#droplets-poweron" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/events/[event_id]</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="droplets-poweron">
+<div class="content">
+<h3>Get event</h3>
+<p>This method allows you to poweron a powered off droplet.</p>
+<h4>Request URL:</h4>
+<pre>http://ticaret.herokuapp.com/services/app/events/[event_id]</pre>
+<h4>Parameters</h4>
+<ul>
+<li><strong>event_id</strong> Required, Integer, this is the id of your event that you want to get its informations.</li>
+</ul>
+<h4>Sample Response</h4>
+<pre>{
+    "user": null,
+    "eventDate": 1386433006411,
+    "invitedUsers": null,
+    "eventName": "2sdfsf",
+    "eventLocation": null,
+    "eventStartDate": null,
+    "eventEndDate": null,
+    "eventDescription": null,
+    "eventImage": null,
+    "eventId": 1
+}</pre>
+</div>
+</div>
+</li>
+
+<li class="method">
+<div class="content collapsed" data-target="#droplets-password_reset" data-toggle="collapse">
+<div class="verb get">POST</div>
+<div class="path">events/add</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="droplets-password_reset">
+<div class="content">
+<h3>Add event</h3>
+<p>This method will add a new event</p>
+<h4>Request URL:</h4>
+<pre>http://ticaret.herokuapp.com/services/app/events/add</pre>
+<h4>Parameters</h4>
+<pre>
+{
+    "eventDescription": "from rest firefox",
+    "eventEndDate": "12/13/2013",
+    "eventImage": "a",
+    "eventLocation": "tunis",
+    "eventName": "event test 1",
+    "eventStartDate": "13/12/2013",
+    "user": {
+        "userId": 11
+    }
+}
+</pre>
+<h4>Sample Response</h4>
+<pre>{
+    "operation": "add-event",
+    "message": "add-event-ok",
+    "flagId": "event-id",
+    "id": 3,
+    "flagText": null,
+    "text": null
+}</pre>
+</div>
+</div>
+</li>
+<li class="method">
+<div class="content collapsed" data-target="#droplets-resize" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">users/[user_id]/events/[event_id]/state</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="droplets-resize">
+<div class="content">
+<h3>Check invitation state</h3>
+<p>This method allows you to check invitation state : Going, Maybe, or Decline and by as default state None.</p>
+<h4>Request URL:</h4>
+<pre>http://ticaret.herokuapp.com/services/app/users/[user_id]/events/[event_id]/state</pre>
+<h4>Parameters</h4>
+<ul>
+<li><strong>user_id</strong> Required, Integer, this is the id of your user.</li>
+<li><strong>event_id</strong> Required, Numeric, this is the id of the event you would like know user's state.</li>
+</ul>
+<h4>Sample Response</h4>
+<pre>{
+    "iuId": 7,
+  "iuDate": 1386474347034,
+  "iuState": "go"
+}</pre>
+</div>
+</div>
+</li>
+<li class="method">
+<div class="content collapsed" data-target="#droplets-snapshot" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">users/[user_id]/events/[event_id]/state/[state_code]</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="droplets-snapshot">
+<div class="content">
+<h3>Change state</h3>
+<p>This method allows you to change the state of an event invitation from default state to one of these states : Going, Maybe or Decline.</p>
+<h4>Request URL:</h4>
+<pre>http://ticaret.herokuapp.com/services/app/users/[user_id]/events/[event_id]/state/[state_code]</pre>
+<h4>Parameters</h4>
+<ul>
+<li><strong>user_id</strong> Required, Numeric, this is the id of your user </li>
+<li><strong>event_id</strong> Required, Numeric, this is the id of your event </li>
+<li><strong>state_code</strong> Required, String, this is the  state code : Going, Maybe or Decline</li>
+</ul>
+<h4>Sample Response</h4>
+<pre>{
+  "operation": "change-state",
+  "message": "ok",
+  "flagId": null,
+  "id": 0,
+  "flagText": null,
+  "text": null
+}</pre>
+</div>
+</div>
+</li>
+<li class="method">
+<div class="content collapsed" data-target="#droplets-restore" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">users/[user1_id]/invite/[user2_id]/to/[event_id]</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="droplets-restore">
+<div class="content">
+<h3>Invite</h3>
+<p>This method allows you to invite a user to a given event.</p>
+<h4>Request URL:</h4>
+<pre>http://ticaret.herokuapp.com/services/app/users/[user1_id]/invite/[user2_id]/to/[event_id]</pre>
+<h4>Parameters</h4>
+<ul>
+<li><strong>user1_id</strong> Required, Numeric, this is the id of your user, the invitor</li>
+<li><strong>user2_id</strong> Required, Numeric, this is the id of your user, the invited</li>
+<li><strong>event_id</strong> Required, Numeric, this is the id of your event</li>
+</ul>
+<h4>Sample Response</h4>
+<pre>{
+  "operation": "invite",
+  "message": "invited",
+  "flagId": null,
+  "id": 0,
+  "flagText": null,
+  "text": null
+}</pre>
+</div>
+</div>
+</li>
+
+<!--
+<li class="method">
+<div class="content collapsed" data-target="#droplets-rebuild" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/droplets/[droplet_id]/rebuild</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="droplets-rebuild">
+<div class="content">
+<h3>Rebuild Droplet</h3>
+<p>This method allows you to reinstall a droplet with a default image. 
+This is useful if you want to start again but retain the same IP address
+ for your droplet.</p>
+<h4>Request URL:</h4>
+<pre>https://api.digitalocean.com/droplets/[droplet_id]/rebuild/?image_id=[image_id]&amp;client_id=[your_client_id]&amp;api_key=[your_api_key]</pre>
+<h4>Parameters</h4>
+<ul>
+<li><strong>droplet_id</strong> Required, Numeric, this is the id of your droplet that you want to rebuild</li>
+<li><strong>image_id</strong> Required, Numeric, this is the id of the image you would like to use to rebuild your droplet with</li>
+</ul>
+<h4>Sample Response</h4>
+<pre>{
+  "status": "OK",
+  "event_id": 7504
+}</pre>
+</div>
+</div>
+</li>
+<li class="method">
+<div class="content collapsed" data-target="#droplets-enablebackups" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/droplets/[droplet_id]/enable_backups</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="droplets-enablebackups">
+<div class="content">
+<h3>Enable Automatic Backups</h3>
+<p>This method enables automatic backups which run in the background daily to backup your droplet's data.</p>
+<h4>Request URL:</h4>
+<pre>https://api.digitalocean.com/droplets/[droplet_id]/enable_backups/?client_id=[your_client_id]&amp;api_key=[your_api_key]</pre>
+<h4>Parameters</h4>
+<ul>
+<li><strong>droplet_id</strong> Required, Numeric, this is the id of your droplet you want to enable backups for</li>
+</ul>
+<h4>Sample Response</h4>
+<pre>{
+  "status": "OK",
+  "event_id": 7504
+}</pre>
+</div>
+</div>
+</li>
+<li class="method">
+<div class="content collapsed" data-target="#droplets-disablebackups" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/droplets/[droplet_id]/disable_backups</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="droplets-disablebackups">
+<div class="content">
+<h3>Disable Automatic Backups</h3>
+<p>This method disables automatic backups from running to backup your droplet's data.</p>
+<h4>Request URL:</h4>
+<pre>https://api.digitalocean.com/droplets/[droplet_id]/disable_backups/?client_id=[your_client_id]&amp;api_key=[your_api_key]</pre>
+<h4>Parameters</h4>
+<ul>
+<li><strong>droplet_id</strong> Required, Numeric, this is the id of your droplet that you want to disable backups on.</li>
+</ul>
+<h4>Sample Response</h4>
+<pre>{
+  "status": "OK",
+  "event_id": 7504
+}</pre>
+</div>
+</div>
+</li>
+<li class="method">
+<div class="content collapsed" data-target="#droplets-rename" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/droplets/[droplet_id]/rename</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="droplets-rename">
+<div class="content">
+<h3>Rename Droplet</h3>
+<p>This method renames the droplet to the specified name.</p>
+<h4>Request URL:</h4>
+<pre>https://api.digitalocean.com/droplets/[droplet_id]/rename/?client_id=[your_client_id]&amp;api_key=[your_api_key]&amp;name=[name]</pre>
+<h4>Parameters</h4>
+<ul>
+<li><strong>droplet_id</strong> Required, Numeric, this is the id of your droplet that you want to rename</li>
+<li><strong>name</strong> Required, String, new name of the droplet</li>
+</ul>
+<h4>Sample Response</h4>
+<pre>{
+  "status": "OK",
+  "event_id": 7504
+}</pre>
+</div>
+</div>
+</li>
+<li class="method">
+<div class="content collapsed" data-target="#droplets-destroy" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/droplets/[droplet_id]/destroy</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="droplets-destroy">
+<div class="content">
+<h3>Destroy Droplet</h3>
+<p>This method destroys one of your droplets - this is irreversible.</p>
+<h4>Request URL:</h4>
+<pre>https://api.digitalocean.com/droplets/[droplet_id]/destroy/?client_id=[your_client_id]&amp;api_key=[your_api_key]</pre>
+<h4>Parameters</h4>
+<ul>
+<li><strong>droplet_id</strong> Required, Numeric, this is the id of the droplet you want to destroy</li>
+<li><strong>scrub_data</strong> Optional, Boolean, this will strictly write 0s to your prior partition to ensure that all data is completely erased.</li>
+</ul>
+<h4>Sample Response</h4>
+<pre>{
+  "status": "OK",
+  "event_id": 7504
+}</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="api-section">
+<h2>/regions</h2>
+<ul class="stack">
+<li class="method">
+<div class="content collapsed" data-target="#regions-list" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/regions</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="regions-list">
+<div class="content">
+<h3>All Regions</h3>
+<p>This method will return all the available regions within the DigitalOcean cloud.</p>
+<h4>Request URL:</h4>
+<pre>https://api.digitalocean.com/regions/?client_id=[your_client_id]&amp;api_key=[your_api_key]</pre>
+<h4>Sample Response</h4>
+<pre>{
+  "status": "OK",
+  "regions": [
+    {
+      "id": 1,
+      "name": "New York 1"
+    },
+    {
+      "id": 2,
+      "name": "Amsterdam 1"
+    },
+    {
+      "id": 3,
+      "name": "San Francisco 1"
+    }
+  ]
+}</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="api-section">
+<h2>/images</h2>
+<ul class="stack">
+<li class="method">
+<div class="content collapsed" data-target="#images-list" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/images</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="images-list">
+<div class="content">
+<h3>All Images</h3>
+<p>This method returns all the available images that can be accessed by 
+your client ID. You will have access to all public images by default, 
+and any snapshots or backups that you have created in your own account.</p>
+<h4>Request URL:</h4>
+<pre>https://api.digitalocean.com/images/?client_id=[your_client_id]&amp;api_key=[your_api_key]</pre>
+<h4>Parameters</h4>
+<ul>
+<li><strong>filter</strong> Optional, String, either "my_images" or "global"</li>
+</ul>
+<h4>Sample Response</h4>
+<pre>{
+  "status": "OK",
+  "images": [
+    {
+      "id": 1,
+      "name": "My first snapshot",
+      "distribution": "Ubuntu"
+    },
+    {
+      "id": 2,
+      "name": "Automated Backup",
+      "distribution": "Ubuntu"
+    }
+  ]
+}</pre>
+</div>
+</div>
+</li>
+<li class="method">
+<div class="content collapsed" data-target="#images-show" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/images/[image_id]</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="images-show">
+<div class="content">
+<h3>Show Image</h3>
+<p>This method displays the attributes of an image.</p>
+<h4>Request URL:</h4>
+<pre>https://api.digitalocean.com/images/[image_id]/?client_id=[your_client_id]&amp;api_key=[your_api_key]</pre>
+<h4>Parameters</h4>
+<ul>
+<li><strong>image_id</strong> Required, Numeric, this is the id of the image you would like to use to rebuild your droplet with</li>
+</ul>
+<h4>Sample Response</h4>
+<pre>{
+  "status": "OK",
+  "image": {
+    "id": 2,
+    "name": "Automated Backup",
+    "distribution":"Ubuntu"
+  }
+}</pre>
+</div>
+</div>
+</li>
+<li class="method">
+<div class="content collapsed" data-target="#images-destroy" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/images/[image_id]/destroy</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="images-destroy">
+<div class="content">
+<h3>Destroy Image</h3>
+<p>This method allows you to destroy an image. There is no way to 
+restore a deleted image so be careful and ensure your data is properly 
+backed up.</p>
+<h4>Request URL:</h4>
+<pre>https://api.digitalocean.com/images/[image_id]/destroy/?client_id=[your_client_id]&amp;api_key=[your_api_key]</pre>
+<h4>Parameters</h4>
+<ul>
+<li><strong>image_id</strong> Required, Numeric, this is the id of the image you would like to destroy</li>
+</ul>
+<h4>Sample Response</h4>
+<pre>{
+  "status": "OK"
+}</pre>
+</div>
+</div>
+</li>
+<li class="method">
+<div class="content collapsed" data-target="#images-transfer" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/images/[image_id]/transfer</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="images-transfer">
+<div class="content">
+<h3>Transfer Image</h3>
+<p>This method allows you to transfer an image to a specified region.</p>
+<h4>Request URL:</h4>
+<pre>https://api.digitalocean.com/images/[image_id]/transfer/?client_id=[your_client_id]&amp;api_key=[your_api_key]&amp;region_id=[region_id]</pre>
+<h4>Parameters</h4>
+<ul>
+<li><strong>image_id</strong> Required, Numeric, this is the id of the image you would like to transfer.</li>
+<li><strong>region_id</strong> Required, Numeric, this is the id of the region to which you would like to transfer.</li>
+</ul>
+<h4>Sample Response</h4>
+<pre>{
+  "status": "OK"
+  "event_id": 7501
+}</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="api-section">
+<h2>/ssh_keys</h2>
+<ul class="stack">
+<li class="method">
+<div class="content collapsed" data-target="#sshkeys-list" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/ssh_keys</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div style="height: 0px;" class="collapse" id="sshkeys-list">
+<div class="content">
+<h3>All SSH Keys</h3>
+<p>This method lists all the available public SSH keys in your account that can be added to a droplet.</p>
+<h4>Request URL:</h4>
+<pre>https://api.digitalocean.com/ssh_keys/?client_id=[your_client_id]&amp;api_key=[your_api_key]</pre>
+<h4>Sample Response</h4>
+<pre>{
+  "status": "OK",
+  "ssh_keys": [
+    {
+      "id": 10,
+      "name": "office-imac"
+    },
+    {
+      "id": 11,
+      "name": "macbook-air"
+    }
+  ]
+}</pre>
+</div>
+</div>
+</li>
+<li class="method">
+<div class="content collapsed" data-target="#sshkeys-new" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/ssh_keys/new</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="sshkeys-new">
+<div class="content">
+<h3>Add SSH Key</h3>
+<p>This method allows you to add a new public SSH key to your account.</p>
+<h4>Request URL:</h4>
+<pre>https://api.digitalocean.com/ssh_keys/new/?name=[ssh_key_name]&amp;ssh_pub_key=[ssh_public_key]&amp;client_id=[your_client_id]&amp;api_key=[your_api_key]</pre>
+<h4>Parameters</h4>
+<ul>
+<li><strong>name</strong> Required, String, the name you want to give this SSH key.</li>
+<li><strong>ssh_pub_key</strong> Required, String, the actual public SSH key.</li>
+</ul>
+<h4>Sample Response</h4>
+<pre>{
+  "status": "OK",
+  "ssh_key": {
+    "id": 47,
+    "name": "my_key",
+    "ssh_pub_key": "ssh-dss AAAAB3NzaC1kc3MAAACBAK5uLwicCrFEpaVKBzkWxC7RQn+smg5ZQb5keh9RQKo8AszFTol5npgUAr0JWmqKIHv7nof0HndO86x9iIqNjq3vrz9CIVcFfZM7poKBJZ27Hv3v0fmSKfAc6eGdx8eM9UkZe1gzcLXK8UP2HaeY1Y4LlaHXS5tPi/dXooFVgiA7AAAAFQCQl6LZo/VYB9VgPEZzOmsmQevnswAAAIBCNKGsVP5eZ+IJklXheUyzyuL75i04OOtEGW6MO5TymKMwTZlU9r4ukuwxty+T9Ot2LqlNRnLSPQUjb0vplasZ8Ix45JOpRbuSvPovryn7rvS7//klu9hIkFAAQ/AZfGTw+696EjFBg4F5tN6MGMA6KrTQVLXeuYcZeRXwE5t5lwAAAIEAl2xYh098bozJUANQ82DiZznjHc5FW76Xm1apEqsZtVRFuh3V9nc7QNcBekhmHp5Z0sHthXCm1XqnFbkRCdFlX02NpgtNs7OcKpaJP47N8C+C/Yrf8qK/Wt3fExrL2ZLX5XD2tiotugSkwZJMW5Bv0mtjrNt0Q7P45rZjNNTag2c= user@host"
+  }
+}</pre>
+</div>
+</div>
+</li>
+<li class="method">
+<div class="content collapsed" data-target="#sshkeys-show" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/ssh_keys/[ssh_key_id]</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="sshkeys-show">
+<div class="content">
+<h3>Show SSH Key</h3>
+<p>This method shows a specific public SSH key in your account that can be added to a droplet.</p>
+<h4>Request URL:</h4>
+<pre>https://api.digitalocean.com/ssh_keys/[ssh_key_id]/?client_id=[your_client_id]&amp;api_key=[your_api_key]</pre>
+<h4>Sample Response</h4>
+<pre>{
+  "status": "OK",
+  "ssh_key": {
+    "id": 10,
+    "name": "office-imac",
+    "ssh_pub_key": "ssh-dss AHJASDBVY6723bgBVhusadkih238723kjLKFnbkjGFklaslkhfgBAFFHGBJbju8)H3hnNGjASGFkjgZn86ZCqk02NX3BTcMV4YI2I4/sebg8VnuebDn0XUbbmVrAq4YqGiobn86ZCqk02NX3BTcMp4QGmyL4/sebg8Vnusytv93cA2PsXOxvbU0CdebDn0XUbbmVrAq4YqGiob48KzCT/NT6L6VoD5n+jSZvQAAAIAspspAelh4bW5ncO5+CedFZPZn86ZCqk02NX3BTcMV4YIaSCO43Y+ghI2of4+E1TDJ1R9Znk9XJsald/U0u0uXwtyHXP2sommNWuAGtzp4QGmyL4/sebg8Vnusytv93cA2PsXOxvbU0CdebDn0XUbbmVrAq4YqGiob48KzCT/NT6L6VoD5n+jSZflFD684gdLsW1+gjVoFBk0MZWuGSXEQyIwlBRq/8jAAAAFQDrxI/h35BewJUmVjid8Qk1NprMvQAAAIAspspAelh4bW5ncO5+CedFZPZn86ZCqk02NX3BTcMV4YI2IEzb6R2vzZkjCTuZVy6dcH3ag6JlEfju67euWT5yMnT1I0Ow== me@office-imac"
+  }
+}</pre>
+</div>
+</div>
+</li>
+<li class="method">
+<div class="content collapsed" data-target="#sshkeys-edit" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/ssh_keys/[ssh_key_id]/edit</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="sshkeys-edit">
+<div class="content">
+<h3>Edit SSH Key</h3>
+<p>This method allows you to modify an existing public SSH key in your account.</p>
+<h4>Request URL:</h4>
+<pre>https://api.digitalocean.com/ssh_keys/[ssh_key_id]/edit/?client_id=[your_client_id]&amp;api_key=[your_api_key]</pre>
+<h4>Parameters</h4>
+<ul>
+<li><strong>ssh_pub_key</strong> Required, String, the new public SSH key.</li>
+</ul>
+<h4>Sample Response</h4>
+<pre>{
+  "status": "OK",
+  "ssh_key": {
+    "id": 47,
+    "name": "My new SSH key",
+    "ssh_pub_key": "ssh-dss AAAAB3NzaC1kc3MAAACBAK5uLwicCrFEpaVKBzkWxC7RQn+smg5ZQb5keh9RQKo8AszFTol5npgUAr0JWmqKIHv7nof0HndO86x9iIqNjq3vrz9CIVcFfZM7poKBJZ27Hv3v0fmSKfAc6eGdx8eM9UkZe1gzcLXK8UP2HaeY1Y4LlaHXS5tPi/dXooFVgiA7AAAAFQCQl6LZo/VYB9VgPEZzOmsmQevnswAAAIBCNKGsVP5eZ+IJklXheUyzyuL75i04OOtEGW6MO5TymKMwTZlU9r4ukuwxty+T9Ot2LqlNRnLSPQUjb0vplasZ8Ix45JOpRbuSvPovryn7rvS7//klu9hIkFAAQ/AZfGTw+696EjFBg4F5tN6MGMA6KrTQVLXeuYcZeRXwE5t5lwAAAIEAl2xYh098bozJUANQ82DiZznjHc5FW76Xm1apEqsZtVRFuh3V9nc7QNcBekhmHp5Z0sHthXCm1XqnFbkRCdFlX02NpgtNs7OcKpaJP47N8C+C/Yrf8qK/Wt3fExrL2ZLX5XD2tiotugSkwZJMW5Bv0mtjrNt0Q7P45rZjNNTag2c= user@host"
+  }
+}</pre>
+</div>
+</div>
+</li>
+<li class="method">
+<div class="content collapsed" data-target="#sshkeys-destroy" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/ssh_keys/[ssh_key_id]/destroy</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="sshkeys-destroy">
+<div class="content">
+<h3>Destroy SSH Key</h3>
+<p>This method will delete the SSH key from your account.</p>
+<h4>Request URL:</h4>
+<pre>https://api.digitalocean.com/ssh_keys/[ssh_key_id]/destroy/?client_id=[your_client_id]&amp;api_key=[your_api_key]</pre>
+<h4>Parameters</h4>
+<ul>
+<li><strong>ssh_pub_key</strong> Required, String, the new public SSH key.</li>
+</ul>
+<h4>Sample Response</h4>
+<pre>{
+  "status": "OK"
+}</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="api-section">
+<h2>/sizes</h2>
+<ul class="stack">
+<li class="method">
+<div class="content collapsed" data-target="#sizes-list" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/sizes</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="sizes-list">
+<div class="content">
+<h3>All Sizes</h3>
+<p>This method returns all the available sizes that can be used to create a droplet.</p>
+<h4>Request URL:</h4>
+<pre>https://api.digitalocean.com/sizes/?client_id=[your_client_id]&amp;api_key=[your_api_key]</pre>
+<h4>Sample Response</h4>
+<pre>{
+  "status": "OK",
+  "sizes": [
+    {
+      "id": 33,
+      "name": "512MB"
+    },
+    {
+      "id": 34,
+      "name": "1GB"
+    },
+    {
+      "id": 35,
+      "name": "2GB"
+    },
+    {
+      "id": 36,
+      "name": "4GB"
+    },
+    {
+      "id": 37,
+      "name": "8GB"
+    },
+    {
+      "id": 38,
+      "name": "16GB"
+    }
+  ]
+}</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="api-section">
+<h2>/domains</h2>
+<ul class="stack">
+<li class="method">
+<div class="content collapsed" data-target="#domains-list" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/domains</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="domains-list">
+<div class="content">
+<h3>All Domains</h3>
+<p>This method returns all of your current domains.</p>
+<h4>Request URL:</h4>
+<pre>https://api.digitalocean.com/domains?client_id=[your_client_id]&amp;api_key=[your_api_key]</pre>
+<h4>Sample Response</h4>
+<pre>{
+  "status": "OK",
+  "domains": [
+    {
+      "id": 100,
+      "name": "example.com",
+      "ttl": 1800,
+      "live_zone_file": "$TTL\\t600\\n@\\t\\tIN\\tSOA\\tNS1.DIGITALOCEAN.COM.\\thostmaster.example.com. (\\n\\t\\t\\t1369261882 ; last update: 2013-05-22 22:31:22 UTC\\n\\t\\t\\t3600 ; refresh\\n\\t\\t\\t900 ; retry\\n\\t\\t\\t1209600 ; expire\\n\\t\\t\\t10800 ; 3 hours ttl\\n\\t\\t\\t)\\n             IN      NS      NS1.DIGITALOCEAN.COM.\\n @\\tIN A\\t8.8.8.8\\n"
+      "error": null,
+      "zone_file_with_error": null
+    }
+  ]
+}</pre>
+</div>
+</div>
+</li>
+<li class="method">
+<div class="content collapsed" data-target="#domains-new" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/domains/new</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="domains-new">
+<div class="content">
+<h3>New Domain</h3>
+<p>This method creates a new domain name with an A record for the specified [ip_address].</p>
+<h4>Request URL:</h4>
+<pre>https://api.digitalocean.com/domains/new?client_id=[your_client_id]&amp;api_key=[your_api_key]&amp;name=[domain]&amp;ip_address=[ip_address]</pre>
+<h4>Parameters</h4>
+<ul>
+<li>
+<strong>name</strong>
+Required, string, name of the domain.
+</li>
+<li>
+<strong>ip_address</strong>
+Required, string, ip address for the domain's initial a record.
+</li>
+</ul>
+<h4>Sample Response</h4>
+<pre>{
+  "status": "OK",
+  "domain": {
+    "id": 101,
+    "name": "newdomain.com"
+  }
+}</pre>
+</div>
+</div>
+</li>
+<li class="method">
+<div class="content collapsed" data-target="#domains-show" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/domains/[domain_id]</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="domains-show">
+<div class="content">
+<h3>Domain Show</h3>
+<p>This method returns the specified domain.</p>
+<h4>Request URL:</h4>
+<pre>https://api.digitalocean.com/domains/[domain_id]?client_id=[your_client_id]&amp;api_key=[your_api_key]</pre>
+<h4>Parameters</h4>
+<ul>
+<li>
+<strong>domain_id</strong>
+Required, Integer or Domain Name (e.g. domain.com), specifies the domain to display.
+</li>
+</ul>
+<h4>Sample Response</h4>
+<pre>{
+  "status": "OK",
+  "domain": {
+    "id": 100,
+    "name": "example.com",
+    "ttl": 1800,
+    "live_zone_file": "$TTL\\t600\\n@\\t\\tIN\\tSOA\\tNS1.DIGITALOCEAN.COM.\\thostmaster.example.com. (\\n\\t\\t\\t1369261882 ; last update: 2013-05-22 22:31:22 UTC\\n\\t\\t\\t3600 ; refresh\\n\\t\\t\\t900 ; retry\\n\\t\\t\\t1209600 ; expire\\n\\t\\t\\t10800 ; 3 hours ttl\\n\\t\\t\\t)\\n             IN      NS      NS1.DIGITALOCEAN.COM.\\n @\\tIN A\\t8.8.8.8\\n"
+    "error": null,
+    "zone_file_with_error": null
+  }
+}</pre>
+</div>
+</div>
+</li>
+<li class="method">
+<div class="content collapsed" data-target="#domains-destroy" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/domains/[domain_id]/destroy</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="domains-destroy">
+<div class="content">
+<h3>Destroy Domain</h3>
+<p>This method deletes the specified domain.</p>
+<h4>Parameters</h4>
+<ul>
+<li>
+<strong>domain_id</strong>
+Required, Integer or Domain Name (e.g. domain.com), specifies the domain to destroy.
+</li>
+</ul>
+<h4>Request URL:</h4>
+<pre>https://api.digitalocean.com/domains/[domain_id]/destroy?client_id=[your_client_id]&amp;api_key=[your_api_key]</pre>
+<h4>Sample Response</h4>
+<pre>{
+  "status": "OK"
+}</pre>
+</div>
+</div>
+</li>
+<li class="method">
+<div class="content collapsed" data-target="#domain_records-list" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/domains/[domain_id]/records</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="domain_records-list">
+<div class="content">
+<h3>All Domain Records</h3>
+<p>This method returns all of your current domain records.</p>
+<h4>Request URL:</h4>
+<pre>https://api.digitalocean.com/domains/[domain_id]/records?client_id=[your_client_id]&amp;api_key=[your_api_key]</pre>
+<h4>Parameters</h4>
+<ul>
+<li>
+<strong>domain_id</strong>
+Required, Integer or Domain Name (e.g. domain.com), specifies the domain for which to retrieve records.
+</li>
+</ul>
+<h4>Sample Response</h4>
+<pre>{
+  "status": "OK",
+  "records": [
+    {
+      "id": 49,
+      "domain_id": "100",
+      "record_type": "A",
+      "name": "example.com",
+      "data": "8.8.8.8",
+      "priority": null,
+      "port": null,
+      "weight": null
+    },
+    {
+      "id": 50,
+      "domain_id": "100",
+      "record_type": "CNAME",
+      "name": "www",
+      "data": "@",
+      "priority": null,
+      "port": null,
+      "weight": null
+    }
+  ]
+}</pre>
+</div>
+</div>
+</li>
+<li class="method">
+<div class="content collapsed" data-target="#domain_records-new" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/domains/[domain_id]/records/new</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="domain_records-new">
+<div class="content">
+<h3>New Domain Record</h3>
+<p>This method creates a new domain name with an A record for the specified [ip_address].</p>
+<h4>Request URL:</h4>
+<pre>https://api.digitalocean.com/domains/[domain_id]/records/new?client_id=[your_client_id]&amp;api_key=[your_api_key]&amp;record_type=[record_type]&amp;data=[data]</pre>
+<h4>Parameters</h4>
+<ul>
+<li>
+<strong>domain_id</strong>
+Required, Integer or Domain Name (e.g. domain.com), specifies the domain for which to create a record.
+</li>
+<li>
+<strong>record_type</strong>
+Required, String, the type of record you would like to create. 'A', 'CNAME', 'NS', 'TXT', 'MX' or 'SRV'
+</li>
+<li>
+<strong>data</strong>
+Required, String, this is the value of the record
+</li>
+<li>
+<strong>name</strong>
+Optional, String, required for 'A', 'CNAME', 'TXT' and 'SRV' records
+</li>
+<li>
+<strong>priority</strong>
+Optional, Integer, required for 'SRV' and 'MX' records
+</li>
+<li>
+<strong>port</strong>
+Optional, Integer, required for 'SRV' records
+</li>
+<li>
+<strong>weight</strong>
+Optional, Integer, required for 'SRV' records
+</li>
+</ul>
+<h4>Sample Response</h4>
+<pre>{
+  "status": "OK",
+  "domain_record": {
+    "id": 51,
+    "domain_id": "100",
+    "record_type": "CNAME",
+    "name": "subdomain",
+    "data": "@",
+    "priority": null,
+    "port": null,
+    "weight": null
+  }
+}</pre>
+</div>
+</div>
+</li>
+<li class="method">
+<div class="content collapsed" data-target="#domain_records-show" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/domains/[domain_id]/records/[record_id]</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="domain_records-show">
+<div class="content">
+<h3>Show Domain Record</h3>
+<p>This method returns the specified domain record.</p>
+<h4>Request URL:</h4>
+<pre>https://api.digitalocean.com/domains/[domain_id]/records/[record_id]?client_id=[your_client_id]&amp;api_key=[your_api_key]</pre>
+<h4>Parameters</h4>
+<ul>
+<li>
+<strong>domain_id</strong>
+Required, Integer or Domain Name (e.g. domain.com), specifies the domain for which to retrieve a record.
+</li>
+<li>
+<strong>record_id</strong>
+Required, Integer, specifies the record_id to retrieve.
+</li>
+</ul>
+<h4>Sample Response</h4>
+<pre>{
+  "status": "OK",
+  "record": {
+    "id": 50,
+    "domain_id": "100",
+    "record_type": "CNAME",
+    "name": "www",
+    "data": "@",
+    "priority": null,
+    "port": null,
+    "weight": null
+  }
+}</pre>
+</div>
+</div>
+</li>
+<li class="method">
+<div class="content collapsed" data-target="#domain_records-edit" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/domains/[domain_id]/records/[record_id]/edit</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="domain_records-edit">
+<div class="content">
+<h3>Edit Domain Record</h3>
+<p>This method edits an existing domain record.</p>
+<h4>Request URL:</h4>
+<pre>https://api.digitalocean.com/domains/[domain_id]/records/[record_id]/edit?client_id=[your_client_id]&amp;api_key=[your_api_key]</pre>
+<h4>Parameters</h4>
+<ul>
+<li>
+<strong>domain_id</strong>
+Required, Integer or Domain Name (e.g. domain.com), specifies the domain for which to create a record.
+</li>
+<li>
+<strong>record_id</strong>
+Required, Integer, specifies the record to update.
+</li>
+<li>
+<strong>record_type</strong>
+Required, String, the type of record you would like to create. 'A', 'CNAME', 'NS', 'TXT', 'MX' or 'SRV'.
+</li>
+<li>
+<strong>data</strong>
+Required, String, this is the value of the record.
+</li>
+<li>
+<strong>name</strong>
+Optional, String, required for 'A', 'CNAME', 'TXT' and 'SRV' records.
+</li>
+<li>
+<strong>priority</strong>
+Optional, Integer, required for 'SRV' and 'MX' records.
+</li>
+<li>
+<strong>port</strong>
+Optional, Integer, required for 'SRV' records.
+</li>
+<li>
+<strong>weight</strong>
+Optional, Integer, required for 'SRV' records.
+</li>
+</ul>
+<h4>Sample Response</h4>
+<pre>{
+  "status": "OK",
+  "record": {
+    "id": 50,
+    "domain_id": "100",
+    "record_type": "CNAME",
+    "name": "www2",
+    "data": "@",
+    "priority": null,
+    "port": null,
+    "weight": null
+  }
+}</pre>
+</div>
+</div>
+</li>
+<li class="method">
+<div class="content collapsed" data-target="#domain_records-destroy" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/domains/[domain_id]/records/[record_id]/destroy</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="domain_records-destroy">
+<div class="content">
+<h3>Destroy Domain Record</h3>
+<p>This method deletes the specified domain record.</p>
+<h4>Parameters</h4>
+<ul>
+<li>
+<strong>domain_id</strong>
+Required, Integer or Domain Name (e.g. domain.com), specifies the domain for which to destroy a record.
+</li>
+<li>
+<strong>record_id</strong>
+Required, Integer, specifies which record to destroy.
+</li>
+</ul>
+<h4>Request URL:</h4>
+<pre>https://api.digitalocean.com/domains/[domain_id]/records/[record_id]/destroy?client_id=[your_client_id]&amp;api_key=[your_api_key]</pre>
+<h4>Sample Response</h4>
+<pre>{
+  "status": "OK",
+}</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="api-section">
+<h2>/events</h2>
+<ul class="stack">
+<li class="method">
+<div class="content collapsed" data-target="#events-show" data-toggle="collapse">
+<div class="verb get">GET</div>
+<div class="path">/events/[event_id]</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="events-show">
+<div class="content">
+<h3>Show Event</h3>
+<p>This method is primarily used to report on the progress of an event by providing the percentage of completion.</p>
+<h4>Request URL:</h4>
+<pre>https://api.digitalocean.com/events/[event_id]/?client_id=[your_client_id]&amp;api_key=[your_api_key]</pre>
+<h4>Parameters</h4>
+<ul>
+<li><strong>event_id</strong> Required, Numeric, this is the id of the event you would like more information about.</li>
+</ul>
+<h4>Sample Response</h4>
+<pre>{
+  "status": "OK",
+  "event": {
+    "id": 7499,
+    "action_status": "done",
+    "droplet_id": 100824,
+    "event_type_id": 1,
+    "percentage": "100"
+  }
+}</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="api-section">
+<h2>errors</h2>
+<ul class="stack">
+<li class="method">
+<div class="content collapsed" data-target="#errors-access" data-toggle="collapse">
+<div class="verb error">ERROR</div>
+<div class="path">access denied</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="errors-access">
+<div class="content">
+<h3>Access Denied</h3>
+<p>This method is returned when you have failed to authenticate into the API successfully.</p>
+<h4>Response Header</h4>
+<pre>status: 401</pre>
+<h4>Sample Response</h4>
+<pre>{
+  "status": "ERROR",
+  "message": "Access Denied"
+}</pre>
+</div>
+</div>
+</li>
+<li class="method">
+<div class="content collapsed" data-target="#errors-not-found" data-toggle="collapse">
+<div class="verb error">ERROR</div>
+<div class="path">not found</div>
+<div class="actions">
+<span class="toggle-documentation"></span>
+</div>
+</div>
+<div class="collapse" id="errors-not-found">
+<div class="content">
+<h3>Resource Not Found</h3>
+<p>This method is returned when you have requested a resource that is not available or not found.</p>
+<h4>Response Header</h4>
+<pre>status: 404</pre>
+<h4>Sample Response</h4>
+<pre>{
+  "status": "ERROR",
+  "message": "Not Found"
+}</pre>
+</div>
+</div>
+</li>
+</ul>
+-->
+</div>
+</div>
+</div>
+</div>
+</div>
+ 
+<script>
+  //<![CDATA[
+    (function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
+    typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);
+    b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
+    mixpanel.init("155e217a94fcfc75058909a4489b9c58");
+  //]]>
+</script>
+<script src="DOAPI_files/zc.js" type="text/javascript"></script>
+<script>
+  //<![CDATA[
+    var clip = new ZeroClipboard( document.getElementById("copy-api-key"), {
+      moviePath: "/assets/zc.swf"
+    });
+    
+    var clip = new ZeroClipboard( document.getElementById("copy-client-key"), {
+      moviePath: "/assets/zc.swf"
+    });
+  //]]>
+</script><div style="position: absolute; left: -9999px; top: -9999px; width: 15px; height: 15px; z-index: 9999;" data-clipboard-ready="true" class="global-zeroclipboard-container" id="global-zeroclipboard-html-bridge">      <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" id="global-zeroclipboard-flash-bridge" height="100%" width="100%">         <param name="movie" value="/assets/zc.swf?nocache=1383152712715">         <param name="allowScriptAccess" value="sameDomain">         <param name="scale" value="exactfit">         <param name="loop" value="false">         <param name="menu" value="false">         <param name="quality" value="best">         <param name="bgcolor" value="#ffffff">         <param name="wmode" value="transparent">         <param name="flashvars" value="">         <embed src="DOAPI_files/zc.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" name="global-zeroclipboard-flash-bridge" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" wmode="transparent" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="" scale="exactfit" height="100%" width="100%">                </object></div>
+ 
+
+
+<script>
+  //<![CDATA[
+    $(document).ready(function() {
+      function status_callback(data) {
+        if (data['events'].length > 0) {
+          $.each(data['events'], function(idx, ev) {
+            if ($.cookie('status_event_' + ev.id) === undefined) {
+              var el = $('<div id="status_event_' + ev.id + '" class="warning flash notices"><div data-eventid="'+ ev.id +'" class="show_more">X</div><div class="show_more" data-target="#EVENT'+ev.id+'" data-toggle="collapse">Show More</div><div class="title">'+ev.title+'</div><div class="update created_at">'+ev.created_at+'</div><div class="updates collapse" id="EVENT'+ev.id+'"></div>');
+              $.each(ev['updates'], function(idx, update) {
+                el.find(".updates").append('<br/><div class="update">'+update['update'].contents+'</div><div class="update created_at">'+update['update'].created_at+'</div>');
+              });
+              el.html(el.html().replace(/\n/g, '<br>'));
+              $('.contents').prepend(el);
+            }
+          });
+        }
+      }
+    
+      $('div[data-eventid]').live("click", function() {
+        var status_event_id = $(this).attr('data-eventid');
+    
+        $('#status_event_' + status_event_id).hide();
+    
+        //set a cookie to persist this state
+        $.cookie('status_event_' + status_event_id, 'hidden', { expires: 7, path: '/' });
+      });
+    
+      $.getJSON('https://status.digitalocean.com/api/v1/events/unresolved.json?callback=?', status_callback);
+    });
+  //]]>
+</script>
+</body></html>

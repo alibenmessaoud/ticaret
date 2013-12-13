@@ -1,0 +1,19 @@
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+  version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
+  <persistence-unit name="ticaret" transaction-type="RESOURCE_LOCAL">
+  	<class>com.ticaret.entities.User</class>
+  	<class>com.ticaret.entities.Event</class>
+  	<class>com.ticaret.entities.InvitedUser</class>
+  	<exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+      <property name="javax.persistence.jdbc.url"    value="jdbc:postgresql://ec2-54-225-124-205.compute-1.amazonaws.com:5432/damrkccjl8f8qp" />
+      <property name="javax.persistence.jdbc.user" value="mcicflyvfampsu" />
+      <property name="javax.persistence.jdbc.password" value="n1k-CkLNvnKhgo4-KpmNa08ltg" />
+      <property name="eclipselink.ddl-generation" value="create-tables" />
+      <property name="eclipselink.ddl-generation.output-mode" value="database" />
+      <!-- <property name="eclipselink.logging.level" value="FINE" />  -->
+    </properties>
+  </persistence-unit>
+</persistence>
