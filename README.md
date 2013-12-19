@@ -1,4 +1,4 @@
-<img src="http://ticaret.herokuapp.com/logo.png">
+<img src="http://ticaret.herokuapp.com/logo.png"> Event Registration & Ticketing Made Easy.
 
 # Get Started
 
